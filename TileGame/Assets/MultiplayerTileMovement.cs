@@ -10,6 +10,7 @@ public class MultiplayerTileMovement : MonoBehaviour
     public static event Action OnClearRow;
     [SerializeField] private bool firstPlayer = true;
     [SerializeField] private UnityEngine.Vector2 leftRightBounds;
+    [SerializeField] private Color bombColor;
     [SerializeField] private GameObject rowfab;
     [SerializeField] private List<GameObject> tileList;
     [SerializeField] private Transform tileSpawn;
@@ -21,13 +22,13 @@ public class MultiplayerTileMovement : MonoBehaviour
     [SerializeField] private float groundPos = -4.75f;
     private GameObject _currentTile;
     private TileRow _previousRow;
-    private bool _build = false;
+    private bool _build = true;
     private bool _tileCanMove = false;
     private bool _gameOverInvoked = false;
     private float _rowToClear = -1f;
     private int _tileIndex = 7;
     private int _tileDensity = 8;
-    private float _tileSpeed = 0.1f;
+    private float _tileSpeed = 0.05f;
     void OnEnable() {
         // INPUT
         if (firstPlayer) {
@@ -74,7 +75,12 @@ public class MultiplayerTileMovement : MonoBehaviour
                 foreach(var hit in hits) {
                     if (hit.transform.parent != child.parent) {
                         _tileCanMove = false;
-                        snapTiles();
+                        if (_build) { 
+                            snapTiles();
+                        }
+                        else {
+                            bombTiles();
+                        }
                         generateNewTile();
                         break;
                     }
@@ -134,10 +140,46 @@ public class MultiplayerTileMovement : MonoBehaviour
     }
     private void heldModify() {
         _build = !_build;
+        if (_currentTile is not null) {
+            foreach (Transform child in _currentTile.transform) {
+                if (!_build) {
+                    child.GetComponent<SpriteRenderer>().color = bombColor;
+                }
+                else {
+                    child.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
+        }
     }
     private void pressedModify() {
         if (_currentTile != null) {
             _currentTile.transform.Rotate(0, 0, 90);
+        }
+        bool validRotation = false;
+        while (!validRotation && _currentTile is not null) {
+            bool noInvalidTiles = true;
+            foreach (Transform child in _currentTile.transform) {
+                if (child.transform.position.x <= leftRightBounds.x) {
+                    _currentTile.transform.position += new UnityEngine.Vector3(0.5f, 0, 0);
+                    noInvalidTiles = false;
+                }
+                else if (child.transform.position.x >= leftRightBounds.y) {
+                    _currentTile.transform.position += new UnityEngine.Vector3(-0.5f, 0, 0);
+                    noInvalidTiles = false;
+                }
+            }
+            validRotation = noInvalidTiles;
+        }
+    }
+    private void bombTiles() {
+        if (_currentTile is not null) {
+            foreach (Transform child in _currentTile.transform) {
+                foreach (TileRow tr in rows) {
+                    if (tr.rowPosition.y < child.position.y && Mathf.Abs(child.position.y - tr.rowPosition.y) <= child.transform.localScale.x) {
+                        tr.RemoveTileAt(child.position.x);
+                    }
+                }
+            }
         }
     }
     private void generateNewTile() {
@@ -148,6 +190,14 @@ public class MultiplayerTileMovement : MonoBehaviour
         if (tileList is not null && tileList.Count > 0) {
             int r = UnityEngine.Random.Range(0, tileList.Count);
             _currentTile = Instantiate(tileList[r], tileSpawn);
+            foreach (Transform child in _currentTile.transform) {
+                if (!_build) {
+                    child.GetComponent<SpriteRenderer>().color = bombColor;
+                }
+                else {
+                    child.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
         }
     }
     private void snapTiles() {

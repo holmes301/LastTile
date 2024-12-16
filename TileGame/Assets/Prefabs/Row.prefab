@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 0
-  speed: 0.1
+  speed: 0.01
+  density: 8
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
+  needsStart: 0
   rowSize: 11
   rowPosition: {x: 0, y: 0, z: 0}

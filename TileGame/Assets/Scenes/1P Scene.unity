@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
-  speed: 0.1
+  speed: 0.05
   density: 5
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
   needsStart: 1
@@ -1094,6 +1094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftRightBounds: {x: -3, y: 3}
+  bombColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
   rowfab: {fileID: 3734416861417712603, guid: bdc8af3a8bf4c8e44bdbcc8b932b6171, type: 3}
   tileList:
   - {fileID: 5407668515006374260, guid: 66b060b90604cf440be5e6089a95df94, type: 3}
@@ -6816,7 +6817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
-  speed: 0.1
+  speed: 0.05
   density: 5
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
   needsStart: 1
@@ -7080,7 +7081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
-  speed: 0.1
+  speed: 0.05
   density: 5
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
   needsStart: 1
@@ -7131,7 +7132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
-  speed: 0.1
+  speed: 0.05
   density: 5
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
   needsStart: 1
@@ -7607,7 +7608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
-  speed: 0.1
+  speed: 0.05
   density: 5
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
   needsStart: 1
@@ -7976,7 +7977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
-  speed: 0.1
+  speed: 0.05
   density: 5
   tile: {fileID: 8191808497793338004, guid: 39a78601ab910024893f0c22367e185d, type: 3}
   needsStart: 1
@@ -8027,7 +8028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  minimumFramesToHold: 90
+  minimumFramesToHold: 60
 --- !u!4 &1792986702
 Transform:
   m_ObjectHideFlags: 0

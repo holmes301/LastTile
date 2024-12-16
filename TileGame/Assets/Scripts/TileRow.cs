@@ -52,6 +52,15 @@ public class TileRow : MonoBehaviour
         gc.transform.parent = this.transform;
         _tilesInRow.Add(gc);
     }
+    public void RemoveTileAt(float xPos) {
+        for (int i = _tilesInRow.Count - 1; i >= 0; i--) {
+            GameObject go = _tilesInRow[i];
+            if (Math.Abs(go.transform.position.x - xPos) <= 0.01) {
+                _tilesInRow.RemoveAt(i);
+                Destroy(go);
+            }
+        }
+    }
     public void RemoveAllTiles() {
         foreach (GameObject gc in _tilesInRow) {
             if (gc is not null) {

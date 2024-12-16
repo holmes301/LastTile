@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class StartUIManager : MonoBehaviour
 {
     [SerializeField] private List<TMP_Text> textList;
+    [SerializeField] private GameObject htpPanel;
+    private bool _toggleHtp = false;
+    private bool _toggleCredits = false;
     private int _selection = 0;
     void OnEnable() {
         UIInputMap.OnNavigateUI += navigateUI;
@@ -14,6 +18,11 @@ public class StartUIManager : MonoBehaviour
     void OnDisable() {
         UIInputMap.OnNavigateUI -= navigateUI;
         UIInputMap.OnSelect -= selectUI;
+    }
+    void Start() {
+        if (htpPanel is not null) {
+            htpPanel.SetActive(false);
+        }
     }
     private void navigateUI(Vector2 input) {
         if (input.y != 0) {
@@ -29,7 +38,10 @@ public class StartUIManager : MonoBehaviour
                 SceneManager.LoadScene("2P Scene");
                 break;
             case 2:
-                // how to play panel here
+                _toggleHtp = !_toggleHtp;
+                if (htpPanel is not null) {
+                    htpPanel.SetActive(_toggleHtp);
+                }
                 break;
             case 3:
                 // credits panel here
