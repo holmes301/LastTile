@@ -8,6 +8,7 @@ public class StartUIManager : MonoBehaviour
 {
     [SerializeField] private List<TMP_Text> textList;
     [SerializeField] private GameObject htpPanel;
+    [SerializeField] private GameObject creditsPanel;
     private bool _toggleHtp = false;
     private bool _toggleCredits = false;
     private int _selection = 0;
@@ -20,8 +21,12 @@ public class StartUIManager : MonoBehaviour
         UIInputMap.OnSelect -= selectUI;
     }
     void Start() {
+        Time.timeScale = 1.0f;
         if (htpPanel is not null) {
             htpPanel.SetActive(false);
+        }
+        if (creditsPanel is not null) {
+            creditsPanel.SetActive(false);
         }
     }
     private void navigateUI(Vector2 input) {
@@ -44,7 +49,10 @@ public class StartUIManager : MonoBehaviour
                 }
                 break;
             case 3:
-                // credits panel here
+                _toggleCredits = !_toggleCredits;
+                if (creditsPanel is not null) {
+                    creditsPanel.SetActive(_toggleCredits);
+                }
                 break;
             case 4:
                 Application.Quit();

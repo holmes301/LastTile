@@ -12,6 +12,7 @@ public class TileMovement : MonoBehaviour
     public static event Action OnGameOver;
     public static event Action OnPlaceBlock;
     public static event Action OnClearRow;
+    public static event Action OnDestroyTile;
     [SerializeField] private UnityEngine.Vector2 leftRightBounds;
     [SerializeField] private Color bombColor;
     [SerializeField] private GameObject rowfab;
@@ -168,6 +169,7 @@ public class TileMovement : MonoBehaviour
                     }
                 }
             }
+            OnDestroyTile?.Invoke();
         }
     }
     private void generateNewTile() {

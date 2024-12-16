@@ -8,6 +8,7 @@ public class MultiplayerTileMovement : MonoBehaviour
     public static event Action OnGameOver;
     public static event Action OnPlaceBlock;
     public static event Action OnClearRow;
+    public static event Action OnDestroyTile;
     [SerializeField] private bool firstPlayer = true;
     [SerializeField] private UnityEngine.Vector2 leftRightBounds;
     [SerializeField] private Color bombColor;
@@ -180,6 +181,7 @@ public class MultiplayerTileMovement : MonoBehaviour
                     }
                 }
             }
+            OnDestroyTile?.Invoke();
         }
     }
     private void generateNewTile() {
