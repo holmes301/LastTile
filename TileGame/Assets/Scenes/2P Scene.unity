@@ -5992,8 +5992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  minimumFramesToHold1P: 60
-  minimumFramesToHold2P: 60
+  minimumFramesToHold1P: 30
+  minimumFramesToHold2P: 30
 --- !u!4 &484109737
 Transform:
   m_ObjectHideFlags: 0
@@ -9163,7 +9163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPlayer: 1
-  leftRightBounds: {x: -7.75, y: -1.5}
+  leftRightBounds: {x: -7.5, y: -1.5}
   bombColor: {r: 1, g: 0.4745098, b: 0.4745098, a: 1}
   rowfab: {fileID: 3734416861417712603, guid: bdc8af3a8bf4c8e44bdbcc8b932b6171, type: 3}
   tileList:
@@ -9227,7 +9227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPlayer: 0
-  leftRightBounds: {x: 1.5, y: 7.75}
+  leftRightBounds: {x: 1.5, y: 7.5}
   bombColor: {r: 1, g: 0.4745098, b: 0.4745098, a: 1}
   rowfab: {fileID: 3734416861417712603, guid: bdc8af3a8bf4c8e44bdbcc8b932b6171, type: 3}
   tileList:

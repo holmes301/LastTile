@@ -8130,7 +8130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  minimumFramesToHold: 60
+  minimumFramesToHold: 30
 --- !u!4 &1792986702
 Transform:
   m_ObjectHideFlags: 0
